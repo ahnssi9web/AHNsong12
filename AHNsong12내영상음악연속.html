@@ -1,1 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+    </style>
+</head>
+
+
+<body>
+
+
+
+<div id="music_list">
+    <audio controls autoplay></audio>
+	 
+</div>
+
+    <span><input    type="number" id="guess1" value=39></span>
+    <input type="button" onclick="Calculate()" value="확인">
+    <script>
+		function Calculate() {
+			var GuessCon1 = document.getElementById("guess1").value;
+			ahnno = GuessCon1;
+			//var GuessCon1sub = GuessCon1 - 500;
+			//document.getElementById("g1s").innerHTML = GuessCon1sub;
+	}
+	</script>
+	
+
+<p>
+<button id="play"> 계속 듣기</button>
+<button id="random"> 임의대로 재생 </button>
+<button id="next"> 고전391 왜불러16  김광석43 김민기81 포크100 노찾사140 송창식203 양희은238 윤도현266 임재범309 장사익320 조용필336-390  </button>
+</p>
+
+<p id='name'> 현재 연주되는 곡명이 보입니다. </p>
+<p id="text"> ahn --->> 연주곡 간신히 찾았다. </p>	
+<p id="text2"> ahnno -->> 연주곡 번호 </p>	
+		
+
+<script>
+			document.getElementById('play').addEventListener('click', function(){
+				playmusic();
+			}, false);
+		//
+			document.getElementById('random').addEventListener('click', function(){
+				randomplay();
+			}, false);
+		//
+			document.getElementById('next').addEventListener('click', function(){
+				nextplay();
+			}, false);
+</script>
+
+
+<script>
+		// Playlist array
+		var files = [
+				
+
+			
+		];
+		
+
+		// Get the audio element
+		var music_player = document.querySelector("#music_list audio");
+		
+
+</script>
+
+
+
+<script>
+
+	
+		function playmusic() {
+			// Change the audio element source
+			// music_player.src = files[i];
+			music_player.src = files[ahnno];
+			// Listen for the music ended event, to play the next audio file
+			music_player.addEventListener('ended', playmusic, false)
+			
+			var str = document.getElementById("text");
+			str.innerHTML = files[ahnno];
+
+			var str2 = document.getElementById("text2");
+			str2.innerHTML = ahnno;			
+		}
+		
+
+		// function for moving to next audio file
+		function nextplay() {
+			// Check for last audio file in the playlist
+			if (ahnno === files.length - 1) {
+				ahnno= 0;
+			} else {
+				ahnno++;
+			}
+			music_player.src = files[ahnno];
+			// Listen for the music ended event, to play the next audio file
+			music_player.addEventListener('ended', nextplay, false)
+			var str = document.getElementById("text");
+			str.innerHTML = files[ahnno];
+
+			var str2 = document.getElementById("text2");
+			str2.innerHTML = ahnno;
+			}
+
+			
+			
+		// function for moving to next audio file
+		function randomplay() {
+			// Check for last audio file in the playlist
+			// Check for last audio file in the playlist
+			ahnno = Math.floor(Math.random() * files.length);
+			if (ahnno === files.length - 1) {
+				ahnno= 0;
+			} 
+			music_player.src = files[ahnno];
+			// Listen for the music ended event, to play the next audio file
+			music_player.addEventListener('ended', randomplay, false)
+			var str = document.getElementById("text");
+			str.innerHTML = files[ahnno];
+
+			var str2 = document.getElementById("text2");
+			str2.innerHTML = ahnno;
+			}
+	
+</script>
+
+</body>
+</html>
+audio
 
